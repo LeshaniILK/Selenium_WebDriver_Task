@@ -60,7 +60,7 @@ namespace SeleniumWebDriverTask.TestCases
             driver.Navigate().GoToUrl(url);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(50);
 
-            IWebElement InsProjectTab = driver.FindElement(By.XPath("//*[@id='navbar-brand-centered']/ul/li[2]/a"));
+            IWebElement InsProjectTab = driver.FindElement(By.XPath("//a[text()='Insurance Project']"));
             InsProjectTab.Click();
 
             Assert.AreEqual("Insurance Broker System - Login", driver.Title);
