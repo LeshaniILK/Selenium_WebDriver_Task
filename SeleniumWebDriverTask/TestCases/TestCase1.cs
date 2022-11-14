@@ -45,7 +45,6 @@ namespace SeleniumWebDriverTask.TestCases
             Email.Clear();
             Email.SendKeys("abc123@gmail.com");
             SubmitBtn.Click();
-            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
 
             IAlert AlertBox = driver.SwitchTo().Alert();
             string AlertText = AlertBox.Text;
@@ -71,16 +70,16 @@ namespace SeleniumWebDriverTask.TestCases
         public void SelectCourse()
         {
             driver.Navigate().GoToUrl(url);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(50);
+            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(50);
 
-            IWebElement Category = driver.FindElement(By.XPath("//*[@id='rt-header']/div/div[2]/div/ul/li[2]/a"));
-            IWebElement Course = driver.FindElement(By.XPath("//*[@id='rt-header']/div/div[2]/div/ul/li[2]/div/div/ul/li[3]/a"));
+            IWebElement Category = driver.FindElement(By.XPath("//li[@class='item118 parent']"));
+            IWebElement Course = driver.FindElement(By.XPath("//li[@class='item121']"));
 
             Actions action = new Actions(driver);
             action.MoveToElement(Category).Perform();
 
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            //IWebElement SearchResult = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath("//*[@id='rt-header']/div/div[2]/div/ul/li[2]/div/div/ul/li[3]/a")));
+            IWebElement SearchResult = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath("//li[@class='item121']")));
 
             action.MoveToElement(Course).Click().Perform();
 
@@ -90,7 +89,7 @@ namespace SeleniumWebDriverTask.TestCases
         [TearDown]
         public void CloseBrowser()
         {
-            driver.Close();
+            driver.Quit();
         }
     }
 }
